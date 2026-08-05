@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TRANSFORMASI DIGITAL MDS 311 BANJARMASIN</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* CSS VARIABLES & RESET */
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --bg-body: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+      --radius: 16px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -1px rgba(0,0,0,0.04);
+      --shadow-hover: 0 12px 20px -3px rgba(37,99,235,0.12), 0 4px 6px -2px rgba(0,0,0,0.05);
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      transition: var(--transition);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 72px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .logo-badge {
+      background-color: var(--primary);
+      color: white;
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    /* HERO SECTION (PANEL JUDUL) */
+    .hero {
+      position: relative;
+      padding: 120px 0 60px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    /* LOGO MDS DI SUDUT KIRI ATAS */
+    .hero-top-left-logo {
+      position: absolute;
+      top: 20px;
+      left: 0;
+      height: 60px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.06));
+    }
+
+    /* LOGO MATAHARI SUDUT KANAN ATAS */
+    .hero-top-right-logo {
+      position: absolute;
+      top: 20px;
+      right: 0;
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.06));
+    }
+
+    .hero-title {
+      font-size: 2.75rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--text-main);
+      margin-bottom: 16px;
+    }
+
+    .hero-title span {
+      color: var(--primary);
+    }
+
+    .hero-subtitle {
+      font-size: 1.125rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    /* DESAIN MANAGER BADGE */
+    .hero-managers {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .manager-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      border: 1px solid var(--border-color);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-main);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .manager-badge i {
+      color: var(--primary);
+    }
+
+    .manager-role {
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--primary);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--primary);
+      border: 1px solid var(--primary);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .hero-illustration {
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+      border-radius: var(--radius);
+      height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: var(--primary);
+      border: 1px solid #bfdbfe;
+    }
+
+    /* SUMMARY STATS */
+    .stats-section {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 50px;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stat-icon {
+      background-color: #eff6ff;
+      color: var(--primary);
+      padding: 12px;
+      border-radius: 12px;
+      display: flex;
+    }
+
+    .stat-value {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* SEARCH & FILTER */
+    .filter-section {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 32px;
+      align-items: center;
+    }
+
+    .search-box {
+      position: relative;
+      flex: 1;
+    }
+
+    .search-box i {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 14px 16px 14px 48px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      font-size: 1rem;
+      outline: none;
+      transition: var(--transition);
+      background: var(--bg-card);
+    }
+
+    .search-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+    }
+
+    .filter-select {
+      padding: 0 20px;
+      height: 50px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-main);
+      outline: none;
+      cursor: pointer;
+    }
+
+    .btn-add-app {
+      height: 50px;
+      white-space: nowrap;
+    }
+
+    /* GRID & CARDS */
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 80px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+      border-color: #bfdbfe;
+    }
+
+    .card-img-wrapper {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      background-color: #f1f5f9;
+      overflow: hidden;
+    }
+
+    .card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .card-date {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .card-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      flex: 1;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .card-btn {
+      flex: 1;
+      justify-content: center;
+      background-color: #eff6ff;
+      color: var(--primary);
+      border: 1px solid #bfdbfe;
+      padding: 10px 14px;
+      font-size: 0.9rem;
+    }
+
+    .card-btn:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .card-edit-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f1f5f9;
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+      padding: 10px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .card-edit-btn:hover {
+      background-color: #e2e8f0;
+      color: var(--text-main);
+    }
+
+    /* EMPTY STATE */
+    .empty-state {
+      display: none;
+      text-align: center;
+      padding: 60px 20px;
+      grid-column: 1 / -1;
+    }
+
+    .empty-state i {
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    /* MODAL FORM TAMBAH/EDIT APLIKASI */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background: white;
+      width: 100%;
+      max-width: 540px;
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .modal-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .close-modal {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .form-input:focus {
+      border-color: var(--primary);
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: white;
+      border-top: 1px solid var(--border-color);
+      padding: 40px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 992px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 130px;
+      }
+      .hero-top-left-logo {
+        top: 15px;
+        left: 5px;
+        height: 50px;
+      }
+      .hero-top-right-logo {
+        top: 15px;
+        right: 50%;
+        transform: translateX(50%);
+        height: 40px;
+      }
+      .hero-managers {
+        justify-content: center;
+      }
+      .hero-illustration {
+        display: none;
+      }
+      .app-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .stats-section {
+        grid-template-columns: 1fr;
+      }
+      .filter-section {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .app-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container nav-container">
+      <a href="#" class="logo">
+        <span class="logo-badge">311</span>
+        TRANSFORMASI DIGITAL
+      </a>
+      <ul class="nav-links">
+        <li><a href="#hero">Beranda</a></li>
+        <li><a href="#aplikasi">Daftar Aplikasi</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="hero" class="hero">
+      <img src="img/logo mds ret.jpg" alt="Logo MDS Ret" class="hero-top-left-logo">
+      
+      <img src="img/logo mds.png" alt="Logo Matahari MDS" class="hero-top-right-logo">
+
+      <div>
+        <h1 class="hero-title">TRANSFORMASI DIGITAL<br><span>MDS 311 BANJARMASIN</span></h1>
+        <p class="hero-subtitle">Kumpulan seluruh aplikasi digital yang telah dan akan dikembangkan sebagai bagian dari Transformasi Digital MDS 311 Banjarmasin.</p>
+        
+        <div class="hero-managers">
+          <div class="manager-badge">
+            <i data-lucide="user-check" size="16"></i>
+            <span>ANDRI PAHREZA SUMANTRI</span>
+            <span class="manager-role">( STORE MANAGER )</span>
+          </div>
+          <div class="manager-badge">
+            <i data-lucide="user-check" size="16"></i>
+            <span>DEVIN GUNAWAN</span>
+            <span class="manager-role">( ASSISTANT STORE MANAGER )</span>
+          </div>
+        </div>
+
+        <a href="#aplikasi" class="btn">
+          Lihat Daftar Aplikasi
+          <i data-lucide="arrow-down"></i>
+        </a>
+      </div>
+      <div class="hero-illustration">
+        <i data-lucide="layout-dashboard" size="64" style="margin-bottom: 12px;"></i>
+        <span style="font-weight: 600; font-size: 1.1rem;">Digital Transformation Hub</span>
+      </div>
+    </section>
+
+    <section class="stats-section">
+      <div class="stat-card">
+        <div class="stat-icon"><i data-lucide="box"></i></div>
+        <div>
+          <div class="stat-value" id="total-app">0</div>
+          <div class="stat-label">Total Aplikasi</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon"><i data-lucide="clock"></i></div>
+        <div>
+          <div class="stat-value" id="realtime-clock">00:00:00</div>
+          <div class="stat-label" id="realtime-date">Memuat tanggal...</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon"><i data-lucide="refresh-cw"></i></div>
+        <div>
+          <div class="stat-value" id="last-update">-</div>
+          <div class="stat-label">Terakhir Diperbarui</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="aplikasi">
+      <div class="filter-section">
+        <div class="search-box">
+          <i data-lucide="search"></i>
+          <input type="text" id="searchInput" class="search-input" placeholder="Cari nama aplikasi...">
+        </div>
+        <select id="yearFilter" class="filter-select">
+          <option value="all">Semua Tahun</option>
+          <option value="2026">2026</option>
+          <option value="2025">2025</option>
+        </select>
+        
+        <button id="openModalBtn" class="btn btn-add-app">
+          <i data-lucide="plus-circle"></i>
+          Tambah Aplikasi
+        </button>
+      </div>
+
+      <div class="app-grid" id="appGrid"></div>
+
+      <div class="empty-state" id="emptyState">
+        <i data-lucide="search-x" size="48"></i>
+        <p>Tidak ada aplikasi yang ditemukan.</p>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-overlay" id="addAppModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalTitle">Tambah Aplikasi Baru</h3>
+        <button class="close-modal" id="closeModalBtn"><i data-lucide="x"></i></button>
+      </div>
+      <form id="addAppForm">
+        <input type="hidden" id="editIndex" value="-1">
+
+        <div class="form-group">
+          <label class="form-label">Nama Aplikasi *</label>
+          <input type="text" id="newNama" class="form-input" placeholder="Contoh: Sistem Absensi Digital" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Deskripsi Singkat *</label>
+          <textarea id="newDeskripsi" class="form-input" rows="3" placeholder="Jelaskan fungsi utama aplikasi ini..." required></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tanggal Dibuat *</label>
+          <input type="text" id="newTanggal" class="form-input" placeholder="Contoh: 15 Agustus 2026" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tahun Pembuatan *</label>
+          <select id="newTahun" class="form-input" required>
+            <option value="2026">2026</option>
+            <option value="2025">2025</option>
+            <option value="2024">2024</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Path Gambar / URL Screenshot *</label>
+          <input type="text" id="newGambar" class="form-input" placeholder="Contoh: img/absensi.png atau https://..." required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Link/URL Aplikasi *</label>
+          <input type="url" id="newLink" class="form-input" placeholder="Contoh: https://script.google.com/..." required>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-outline" id="cancelModalBtn">Batal</button>
+          <button type="submit" class="btn" id="submitModalBtn">Simpan Aplikasi</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p style="font-weight: 600; color: var(--text-main); margin-bottom: 4px;">TRANSFORMASI DIGITAL MDS 311 BANJARMASIN</p>
+      <p>© 2026 MDS 311 Banjarmasin. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // -------------------------------------------------------------
+    // DATA APLIKASI (Tambahkan / Edit Data di Sini)
+    // -------------------------------------------------------------
+    const dataAplikasi = [
+      {
+        nama: "DASHBOARD SALES",
+        deskripsi: "Melakukan monitoring terhadap sales performance dengan mudah.",
+        tanggal: "12 Mei 2026",
+        tahun: "2026",
+        gambar: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
+        link: "https://script.google.com/macros/s/AKfycbxsGWQhyFp0SjQu56SYyGvW8RK3vdlL6cjl-MIqhxLhrXVulJ41bdLN4XeT8eFnubQ/exec"
+      },
+      {
+        nama: "RCA 7 Pilar Otomatis",
+        deskripsi: "Aplikasi RCA 7 Pilar Retail (Retail Diagnosis & Action Plan Generator) adalah platform analisis operasional ritel berbasis web.",
+        tanggal: "05 Februari 2026",
+        tahun: "2026",
+        gambar: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80",
+        link: "https://script.google.com/macros/s/AKfycbx0MxicPM4UtsDzyjF32yw97Kujrs8KjmCyvFUGv7-l8VmlxRhjEqUYer3teIPfZo9M/exec"
+      },
+      {
+        nama: "Hourly Sales Monitoring",
+        deskripsi: "Sistem monitoring sales per jam di toko.",
+        tanggal: "20 November 2025",
+        tahun: "2025",
+        gambar: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80",
+        link: "https://311-hourlysales.netlify.app/"
+      },
+      {
+        nama: "Smart Shifting System",
+        deskripsi: "Sistem monitoring Shifting Karyawan (Supervisor dan Supporting Unit).",
+        tanggal: "20 November 2025",
+        tahun: "2025",
+        gambar: "img/Shifting.png",
+        link: "https://311-smartshiftingsystem.netlify.app/"
+      },
+      {
+        nama: "All In One Link Report",
+        deskripsi: "Sistem monitoring Link Report sentralisasi.",
+        tanggal: "20 November 2025",
+        tahun: "2025",
+        gambar: "img/ALL IN ONE.png",
+        link: "https://311-all-in-one.netlify.app/"
+      },
+      {
+        nama: "Log Harian SPV",
+        deskripsi: "Sistem monitoring aktivitas harian supervisor.",
+        tanggal: "20 November 2025",
+        tahun: "2025",
+        gambar: "img/LOG SPV.png",
+        link: "https://script.google.com/macros/s/AKfycbyLmSPfwWS4GqX7EWUgQhoNvntLQRaeNWAg5fmK8XeuwH74-Xqr5HBHo2b0BB0P8uOf/exec"
+      },
+      {
+        nama: "Dashboard Monitoring by Brand by SPG",
+        deskripsi: "Sistem monitoring Inventory By Brand CV.",
+        tanggal: "20 November 2025",
+        tahun: "2025",
+        gambar: "img/MONITOR BRAND.png",
+        link: "https://script.google.com/macros/s/AKfycbygyTz89T5RKnW5bHiUVM9Uj2sPCjDluPkqO6DmtMqjjxVTVUobOKaoA1GuKBnzFF1hwg/exec"
+      }
+    ];
+
+    // DOM ELEMENTS
+    const appGrid = document.getElementById('appGrid');
+    const searchInput = document.getElementById('searchInput');
+    const yearFilter = document.getElementById('yearFilter');
+    const emptyState = document.getElementById('emptyState');
+    const totalAppEl = document.getElementById('total-app');
+    const lastUpdateEl = document.getElementById('last-update');
+
+    // MODAL ELEMENTS
+    const addAppModal = document.getElementById('addAppModal');
+    const openModalBtn = document.getElementById('openModalBtn');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const cancelModalBtn = document.getElementById('cancelModalBtn');
+    const addAppForm = document.getElementById('addAppForm');
+    const modalTitle = document.getElementById('modalTitle');
+    const editIndexEl = document.getElementById('editIndex');
+
+    // REALTIME CLOCK FUNCTION
+    function updateRealtimeClock() {
+      const now = new Date();
+      
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      
+      const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+      const dateString = now.toLocaleDateString('id-ID', options);
+      
+      const clockEl = document.getElementById('realtime-clock');
+      const dateEl = document.getElementById('realtime-date');
+      
+      if (clockEl) clockEl.textContent = `${hours}:${minutes}:${seconds}`;
+      if (dateEl) dateEl.textContent = dateString;
+    }
+
+    // RENDER CARDS
+    function renderApps(apps) {
+      appGrid.innerHTML = '';
+      
+      if (apps.length === 0) {
+        emptyState.style.display = 'block';
+        return;
+      }
+      
+      emptyState.style.display = 'none';
+
+      apps.forEach((app, index) => {
+        // Cari index asli dari array dataAplikasi
+        const originalIndex = dataAplikasi.indexOf(app);
+
+        const cardHtml = `
+          <div class="card">
+            <div class="card-img-wrapper">
+              <img src="${app.gambar}" alt="${app.nama}" class="card-img" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80'">
+            </div>
+            <div class="card-body">
+              <div class="card-date">
+                <i data-lucide="calendar" size="14"></i>
+                ${app.tanggal}
+              </div>
+              <h3 class="card-title">${app.nama}</h3>
+              <p class="card-desc">${app.deskripsi}</p>
+              <div class="card-actions">
+                <a href="${app.link}" target="_blank" class="btn card-btn">
+                  Buka Aplikasi
+                  <i data-lucide="external-link" size="16"></i>
+                </a>
+                <button type="button" class="card-edit-btn" onclick="openEditModal(${originalIndex})" title="Edit Aplikasi">
+                  <i data-lucide="edit-3" size="16"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+        appGrid.innerHTML += cardHtml;
+      });
+
+      // Refresh Icon Lucide
+      lucide.createIcons();
+    }
+
+    // FILTER FUNCTION
+    function filterApps() {
+      const query = searchInput.value.toLowerCase();
+      const selectedYear = yearFilter.value;
+
+      const filtered = dataAplikasi.filter(app => {
+        const matchesSearch = app.nama.toLowerCase().includes(query) || app.deskripsi.toLowerCase().includes(query);
+        const matchesYear = selectedYear === 'all' || app.tahun === selectedYear;
+        return matchesSearch && matchesYear;
+      });
+
+      renderApps(filtered);
+    }
+
+    // UPDATE STATS
+    function updateStats() {
+      totalAppEl.textContent = dataAplikasi.length;
+      if (dataAplikasi.length > 0) {
+        lastUpdateEl.textContent = dataAplikasi[0].tanggal;
+      }
+    }
+
+    // BUKA MODAL DALAM MODE TAMBAH
+    openModalBtn.addEventListener('click', () => {
+      modalTitle.textContent = "Tambah Aplikasi Baru";
+      editIndexEl.value = "-1";
+      addAppForm.reset();
+      addAppModal.style.display = 'flex';
+    });
+
+    // BUKA MODAL DALAM MODE EDIT
+    window.openEditModal = function(index) {
+      const app = dataAplikasi[index];
+      if (!app) return;
+
+      modalTitle.textContent = "Edit Data Aplikasi";
+      editIndexEl.value = index;
+
+      document.getElementById('newNama').value = app.nama;
+      document.getElementById('newDeskripsi').value = app.deskripsi;
+      document.getElementById('newTanggal').value = app.tanggal;
+      document.getElementById('newTahun').value = app.tahun || "2026";
+      document.getElementById('newGambar').value = app.gambar;
+      document.getElementById('newLink').value = app.link;
+
+      addAppModal.style.display = 'flex';
+    };
+
+    function closeModal() {
+      addAppModal.style.display = 'none';
+      addAppForm.reset();
+      editIndexEl.value = "-1";
+    }
+
+    closeModalBtn.addEventListener('click', closeModal);
+    cancelModalBtn.addEventListener('click', closeModal);
+
+    // SUBMIT FORM (TAMBAH / EDIT)
+    addAppForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const index = parseInt(editIndexEl.value, 10);
+      const appData = {
+        nama: document.getElementById('newNama').value,
+        deskripsi: document.getElementById('newDeskripsi').value,
+        tanggal: document.getElementById('newTanggal').value,
+        tahun: document.getElementById('newTahun').value,
+        gambar: document.getElementById('newGambar').value,
+        link: document.getElementById('newLink').value
+      };
+
+      if (index >= 0 && index < dataAplikasi.length) {
+        // MODE EDIT: Update data pada index terkait
+        dataAplikasi[index] = appData;
+        alert(`Aplikasi "${appData.nama}" berhasil diperbarui!`);
+      } else {
+        // MODE TAMBAH: Tambahkan aplikasi ke paling atas array
+        dataAplikasi.unshift(appData);
+        alert(`Aplikasi "${appData.nama}" berhasil ditambahkan!`);
+      }
+
+      filterApps();
+      updateStats();
+      closeModal();
+    });
+
+    // INITIAL SETUP
+    function init() {
+      updateStats();
+      renderApps(dataAplikasi);
+
+      // Jalankan Jam Realtime
+      updateRealtimeClock();
+      setInterval(updateRealtimeClock, 1000);
+
+      searchInput.addEventListener('input', filterApps);
+      yearFilter.addEventListener('change', filterApps);
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>

@@ -216,16 +216,50 @@
       color: white;
     }
 
+    /* WADAH FOTO HERO DASHBOARD (OPSI B: FOTO DI DALAM KARTU + TEKS) */
     .hero-illustration {
       background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
       border-radius: var(--radius);
-      height: 280px;
+      height: 290px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       color: var(--primary);
       border: 1px solid #bfdbfe;
+      padding: 16px;
+      gap: 12px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .hero-illustration-img-container {
+      width: 100%;
+      flex: 1;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #ffffff;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+    }
+
+    .hero-illustration-img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .hero-illustration-img-container img:hover {
+      transform: scale(1.03);
+    }
+
+    .hero-illustration-label {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     /* SUMMARY STATS */
@@ -439,7 +473,7 @@
       margin-bottom: 12px;
     }
 
-    /* MODAL FORM TAMBAH/EDIT APLIKASI */
+    /* MODAL FORM TAMBAH / EDIT APLIKASI */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -616,9 +650,15 @@
           <i data-lucide="arrow-down"></i>
         </a>
       </div>
+
       <div class="hero-illustration">
-        <i data-lucide="layout-dashboard" size="64" style="margin-bottom: 12px;"></i>
-        <span style="font-weight: 600; font-size: 1.1rem;">Digital Transformation Hub</span>
+        <div class="hero-illustration-img-container">
+          <img src="img/trans.png" alt="Digital Transformation Hub" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80';">
+        </div>
+        <span class="hero-illustration-label">
+          <i data-lucide="layout-dashboard" size="18"></i>
+          Digital Transformation Hub
+        </span>
       </div>
     </section>
 
@@ -836,8 +876,7 @@
       
       emptyState.style.display = 'none';
 
-      apps.forEach((app, index) => {
-        // Cari index asli dari array dataAplikasi
+      apps.forEach((app) => {
         const originalIndex = dataAplikasi.indexOf(app);
 
         const cardHtml = `
@@ -943,11 +982,9 @@
       };
 
       if (index >= 0 && index < dataAplikasi.length) {
-        // MODE EDIT: Update data pada index terkait
         dataAplikasi[index] = appData;
         alert(`Aplikasi "${appData.nama}" berhasil diperbarui!`);
       } else {
-        // MODE TAMBAH: Tambahkan aplikasi ke paling atas array
         dataAplikasi.unshift(appData);
         alert(`Aplikasi "${appData.nama}" berhasil ditambahkan!`);
       }

@@ -216,7 +216,7 @@
       color: white;
     }
 
-    /* WADAH FOTO HERO DASHBOARD (OPSI B: FOTO DI DALAM KARTU + TEKS) */
+    /* WADAH FOTO HERO DASHBOARD (OPSI B) */
     .hero-illustration {
       background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
       border-radius: var(--radius);
@@ -769,9 +769,9 @@
 
   <script>
     // -------------------------------------------------------------
-    // DATA APLIKASI (Tambahkan / Edit Data di Sini)
+    // DATA DEFAULT APLIKASI
     // -------------------------------------------------------------
-    const dataAplikasi = [
+    const initialApps = [
       {
         nama: "DASHBOARD SALES",
         deskripsi: "Melakukan monitoring terhadap sales performance dengan mudah.",
@@ -829,6 +829,18 @@
         link: "https://script.google.com/macros/s/AKfycbygyTz89T5RKnW5bHiUVM9Uj2sPCjDluPkqO6DmtMqjjxVTVUobOKaoA1GuKBnzFF1hwg/exec"
       }
     ];
+
+    // BACA DATA DARI LOCALSTORAGE ATAU GUNAKAN DEFAULT DATA
+    let dataAplikasi = JSON.parse(localStorage.getItem('mds311_apps'));
+    if (!dataAplikasi || dataAplikasi.length === 0) {
+      dataAplikasi = initialApps;
+      localStorage.setItem('mds311_apps', JSON.stringify(dataAplikasi));
+    }
+
+    // FUNGSI UNTUK SIMPAN DATA KE LOCALSTORAGE
+    function saveDataToStorage() {
+      localStorage.setItem('mds311_apps', JSON.stringify(dataAplikasi));
+    }
 
     // DOM ELEMENTS
     const appGrid = document.getElementById('appGrid');
@@ -988,6 +1000,9 @@
         dataAplikasi.unshift(appData);
         alert(`Aplikasi "${appData.nama}" berhasil ditambahkan!`);
       }
+
+      // SIMPAN PERUBAHAN KE LOCALSTORAGE
+      saveDataToStorage();
 
       filterApps();
       updateStats();
